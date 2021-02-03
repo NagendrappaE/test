@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.4">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Test Plan" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Thread Group" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">500</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">50</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">2</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="CustomerEnrolement" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;&#xd;
+&lt;asbaWebService&gt;&#xd;
+	&lt;header&gt;&#xd;
+		&lt;channelId&gt;1002&lt;/channelId&gt;&#xd;
+		&lt;transcation&gt;CustomerRegistration&lt;/transcation&gt;&#xd;
+	&lt;/header&gt;&#xd;
+	&lt;request&gt;&#xd;
+		&lt;clientId&gt;${clientid}&lt;/clientId&gt;&#xd;
+		&lt;customerId&gt;${customerId}&lt;/customerId&gt;&#xd;
+		&lt;depositoryId&gt;0&lt;/depositoryId&gt;&#xd;
+		&lt;depositoryName&gt;NSDL&lt;/depositoryName&gt;&#xd;
+		&lt;dpId&gt;${dpid}&lt;/dpId&gt;&#xd;
+		&lt;dpModeOperationId&gt;0&lt;/dpModeOperationId&gt;&#xd;
+		&lt;dpModeOperationcode&gt;Single&lt;/dpModeOperationcode&gt;&#xd;
+		&lt;emailId&gt;madhumathi.k@evolvussolutions.com&lt;/emailId&gt;&#xd;
+		&lt;firstAcctHolderName&gt;MADHU&lt;/firstAcctHolderName&gt;&#xd;
+		&lt;firstAcctHolderPanNumber&gt;${pan}&lt;/firstAcctHolderPanNumber&gt;&#xd;
+		&lt;guradianRelId&gt;0&lt;/guradianRelId&gt;&#xd;
+		&lt;mobileNumber&gt;8861168775&lt;/mobileNumber&gt;&#xd;
+	&lt;/request&gt;&#xd;
+&lt;/asbaWebService&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">asbaWeb/restServices/easba</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/xml</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="asbaregidtaionCSV" enabled="true">
+            <stringProp name="filename">/home/user/Downloads/asbaregdtls_asba.csv</stringProp>
+            <stringProp name="fileEncoding"></stringProp>
+            <stringProp name="variableNames">clientid,dpid,customerId,pan,accountNumber</stringProp>
+            <boolProp name="ignoreFirstLine">true</boolProp>
+            <stringProp name="delimiter">,</stringProp>
+            <boolProp name="quotedData">false</boolProp>
+            <boolProp name="recycle">true</boolProp>
+            <boolProp name="stopThread">false</boolProp>
+            <stringProp name="shareMode">shareMode.all</stringProp>
+          </CSVDataSet>
+          <hashTree/>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+        </hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="IssueApplication" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot; standalone=&quot;yes&quot;?&gt;&#xd;
+&lt;asbaWebService&gt;&#xd;
+	&lt;header&gt;&#xd;
+		&lt;channelId&gt;1002&lt;/channelId&gt;&#xd;
+		&lt;transcation&gt;ApplyIssApp&lt;/transcation&gt;&#xd;
+	&lt;/header&gt;&#xd;
+	&lt;request&gt;&#xd;
+		&lt;issueSymbol&gt;SPRING&lt;/issueSymbol&gt;&#xd;
+		&lt;listInvrCat&gt;&#xd;
+			&lt;investerCategoryDescStr&gt;INDUVISUAL&lt;/investerCategoryDescStr&gt;&#xd;
+			&lt;investerCategoryCodeStr&gt;IND&lt;/investerCategoryCodeStr&gt;&#xd;
+		&lt;/listInvrCat&gt;&#xd;
+		&lt;maxNumOfShares&gt;100&lt;/maxNumOfShares&gt;&#xd;
+		&lt;minNumOfShares&gt;10&lt;/minNumOfShares&gt;&#xd;
+		&lt;minBidRate&gt;10.00&lt;/minBidRate&gt;&#xd;
+		&lt;maxBidRate&gt;100.00&lt;/maxBidRate&gt;&#xd;
+		&lt;sharesInMultiple&gt;10&lt;/sharesInMultiple&gt;&#xd;
+		&lt;discountFlag&gt;0&lt;/discountFlag&gt;&#xd;
+		&lt;clientId&gt;${clientid}&lt;/clientId&gt;&#xd;
+		&lt;dpId&gt;${dpid}&lt;/dpId&gt;&#xd;
+		&lt;acctNum&gt;${accountNumber}&lt;/acctNum&gt;&#xd;
+		&lt;accountName&gt;AMAN&lt;/accountName&gt;&#xd;
+		&lt;depositoryCode&gt;NSDL&lt;/depositoryCode&gt;&#xd;
+		&lt;appBidList&gt;&#xd;
+			&lt;bidAmount&gt;1000&lt;/bidAmount&gt;&#xd;
+			&lt;bidPrice&gt;100&lt;/bidPrice&gt;&#xd;
+			&lt;bidQuantity&gt;10&lt;/bidQuantity&gt;&#xd;
+			&lt;bidRate&gt;10&lt;/bidRate&gt;&#xd;
+			&lt;discountBidAmt&gt;0.00&lt;/discountBidAmt&gt;&#xd;
+		&lt;/appBidList&gt;&#xd;
+		&lt;amountBlocked&gt;1000&lt;/amountBlocked&gt;&#xd;
+		&lt;cutOffFlag&gt;0&lt;/cutOffFlag&gt;&#xd;
+		&lt;bidPrice&gt;1000&lt;/bidPrice&gt;&#xd;
+		&lt;bidQuantity&gt;10&lt;/bidQuantity&gt;&#xd;
+		&lt;minBidAmnt&gt;1&lt;/minBidAmnt&gt;&#xd;
+		&lt;maxBidAmnt&gt;99999999999999&lt;/maxBidAmnt&gt;&#xd;
+		&lt;customerId&gt;${customerId}&lt;/customerId&gt;&#xd;
+		&lt;issueType&gt;IPO&lt;/issueType&gt;&#xd;
+		&lt;emailId&gt;manish.p@evolvussolutions.com&lt;/emailId&gt;&#xd;
+		&lt;mobileNumber&gt;7877655555&lt;/mobileNumber&gt;&#xd;
+		&lt;rhtIssueFlag&gt;0&lt;/rhtIssueFlag&gt;&#xd;
+	&lt;/request&gt;&#xd;
+&lt;/asbaWebService&gt;</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol"></stringProp>
+          <stringProp name="HTTPSampler.contentEncoding"></stringProp>
+          <stringProp name="HTTPSampler.path">/asbaWeb/restServices/easba</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree>
+          <ResultCollector guiclass="ViewResultsFullVisualizer" testclass="ResultCollector" testname="View Results Tree" enabled="true">
+            <boolProp name="ResultCollector.error_logging">false</boolProp>
+            <objProp>
+              <name>saveConfig</name>
+              <value class="SampleSaveConfiguration">
+                <time>true</time>
+                <latency>true</latency>
+                <timestamp>true</timestamp>
+                <success>true</success>
+                <label>true</label>
+                <code>true</code>
+                <message>true</message>
+                <threadName>true</threadName>
+                <dataType>true</dataType>
+                <encoding>false</encoding>
+                <assertions>true</assertions>
+                <subresults>true</subresults>
+                <responseData>false</responseData>
+                <samplerData>false</samplerData>
+                <xml>false</xml>
+                <fieldNames>true</fieldNames>
+                <responseHeaders>false</responseHeaders>
+                <requestHeaders>false</requestHeaders>
+                <responseDataOnError>false</responseDataOnError>
+                <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+                <assertionsResultsToSave>0</assertionsResultsToSave>
+                <bytes>true</bytes>
+                <sentBytes>true</sentBytes>
+                <url>true</url>
+                <threadCounts>true</threadCounts>
+                <idleTime>true</idleTime>
+                <connectTime>true</connectTime>
+              </value>
+            </objProp>
+            <stringProp name="filename"></stringProp>
+          </ResultCollector>
+          <hashTree/>
+          <HeaderManager guiclass="HeaderPanel" testclass="HeaderManager" testname="HTTP Header Manager" enabled="true">
+            <collectionProp name="HeaderManager.headers">
+              <elementProp name="" elementType="Header">
+                <stringProp name="Header.name">Content-Type</stringProp>
+                <stringProp name="Header.value">application/xml</stringProp>
+              </elementProp>
+            </collectionProp>
+          </HeaderManager>
+          <hashTree/>
+          <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="asbaregidtaionCSV" enabled="true">
+            <stringProp name="filename">/home/user/Downloads/asbaregdtls_asba.csv</stringProp>
+            <stringProp name="fileEncoding"></stringProp>
+            <stringProp name="variableNames">clientid,dpid,customerId,pan,accountNumber</stringProp>
+            <boolProp name="ignoreFirstLine">true</boolProp>
+            <stringProp name="delimiter">,</stringProp>
+            <boolProp name="quotedData">false</boolProp>
+            <boolProp name="recycle">true</boolProp>
+            <boolProp name="stopThread">false</boolProp>
+            <stringProp name="shareMode">shareMode.all</stringProp>
+          </CSVDataSet>
+          <hashTree/>
+        </hashTree>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>

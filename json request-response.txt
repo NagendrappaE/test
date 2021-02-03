@@ -1,0 +1,84 @@
+===============================================Get customer details====================================== 
+Request :
+
+{
+"account_num":"4535453545456565"
+}
+
+
+Response:
+
+
+{
+  "pinCode": "743126",
+  "emailId": "manipro7320@gmail.com",
+  "accountName": "Manish",
+  "modeOfOpeartion": "SINGLY",
+  "acctNo": "017254000323910",
+  "status": "S",
+  "description": "Success",
+  "state": "W.B",
+  "accountType": "Savings Account",
+  "address1": "1ST FLR, OPP MASJID, KHOJA LANE",
+  "telephone": "34335",
+  "mobileNo": "9987645323",
+  "city": "KOLKATA",
+  "pan": "WERTY6789P"
+}
+
+
+
+=========================================================================PAN API enquiry=============
+Request:
+
+{
+"pan_number":"ABCDE1234F",
+   "CHANNEL_NAME":"ABS",
+   "PAN_SERVICE_NAME":"ADT",
+   "PAN_SECRET_KEY":"A603958FB1995C60EBF0D4B7FE26E9E4CD83EEB32AE3A753"
+}
+
+
+Response:
+{"id":2652,"status":"S","panNo":"AXAPP3481D","title":"Shri","lastname":"PAWAR","firstname":"DADASO","middlename":"VISHNU","exist":"E","issueDate":"12/12/2014","ipAddress":"10.10.252.205","insertDate":1496298142973,"modifyDate":1496298143504,"channel":"ZIP","serviceName":"PAN","requestId":"ZIPPAN2017060111522239","token":"6q0lOeQapdI=","tokenExpire":1496298562973}
+
+==================EMAIL==========================================================
+
+
+
+Request:
+
+{
+"from":"abc@gmail.com",
+"to":"cba@gmail.com",
+"cc":"xyz@gmail.com",
+"bcc":"zyx@gmail.com",
+"subject":"sending mail",
+"message_body":"application is punched successfully",
+"key":"AE#F%T56",
+"channel_name":"ABC"
+}
+
+
+
+Response:
+{"status":"S","descr":"Email send successfully.","id":null}
+
+
+========
+Request:
+
+{
+"mobile_no":"45362773637648",
+"msg":"application is punched",
+"secret_key":"AS#43G&",
+"ref_value":"376434",
+"channel_name":"ABC"
+}
+
+
+
+
+Response:
+{"status":"S","descr":"Message Send Sucessfully","id":null}
+
